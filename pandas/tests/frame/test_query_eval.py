@@ -1331,3 +1331,13 @@ class TestDataFrameQueryBacktickQuoting:
             }
         )
         tm.assert_frame_equal(result, expected)
+    
+    def test_duplicate_labels_raises_Value_error(self):
+        data = [1, 2, 3]
+        index = [1, 1, 2]
+        df = pd.Series(data, index=index, name='col').to_frame()
+        result = df.query('index == 1 and col == 2')
+        data2 = [2]
+        index2 = [1]
+        expected = pd.Series(data2, index=index, name='col').to_frame()
+        tm.assert_frame_equal(result, expected)
