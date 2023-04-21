@@ -1511,3 +1511,5 @@ class TestRowStringConverter:
             """
         )
         assert df.style.to_latex() == expected
+
+    #create new branch
